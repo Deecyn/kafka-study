@@ -54,6 +54,7 @@ spotless {
 allprojects {
 
   repositories {
+    maven{url 'https://maven.aliyun.com/nexus/content/groups/public/'}
     mavenCentral()
   }
 
@@ -728,6 +729,11 @@ project(':core') {
     compile libs.commonsCli
 
     compileOnly libs.log4j
+
+    // 引入 slf4j + log4j2 日志依赖
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
 
     testCompile project(':clients').sourceSets.test.output
     testCompile libs.bcpkix
